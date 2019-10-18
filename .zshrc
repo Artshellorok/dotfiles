@@ -5,6 +5,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/artshellorok/.oh-my-zsh"
 export TERM=xterm-256color
+export PATH=$PATH:/opt/android-sdk/tools
+export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export ANDROID_HOME=/opt/android-sdk
 alias urx="xrdb ~/.Xresources"
 alias urxe="vim ~/.Xresources"
 alias so="source ~/.zshrc"
@@ -12,9 +16,55 @@ alias soe="vim ~/.zshrc"
 alias vie="vim ~/.vimrc"
 alias ie="vim ~/.config/i3/config"
 alias gtke="vim ~/.config/gtk-3.0/settings.ini"
+alias gtk="vim ~/.config/gtk-3.0/gtk.css"
+alias tinker="phpd artisan tinker"
+alias migrate="phpd artisan migrate:fresh"
+alias migraten="phpd artisan migrate"
+alias gopr="cd ~/projects/yeducationback/php"
+alias pu="./vendor/bin/phpunit"
+alias chrome="google-chrome-stable"
+alias pole="vim ~/.config/polybar/config"
+alias poll="vim ~/.config/polybar/launch.sh"
+alias cale="vim ~/.config/polybar/calendar.sh"
+alias dperm="sudo chmod -R 777 ."
+alias mye="docker exec -it yeducationback_mariadb_1 sh -c 'mysql -u root -p'"
+alias host="sudo vim /etc/hosts"
+alias sph="mysql -u root -p --port 8080 --protocol TCP"
+alias php="/usr/bin/php"
+alias vgar="vim ~/.vim/plugins.vim"
+alias prj="gvim ~/projects"
+alias rc="vim ~/.vimrc"
+alias composer="php /usr/bin/composer"
+setopt PROMPT_CR
+setopt PROMPT_SP
+export PROMPT_EOL_MARK=""
+function inet(){
+    sudo ip link set enp3s0 up
+    sudo ip addr add 192.168.1.64/24 dev enp3s0
+    sudo ip ro add default via 192.168.1.1
+}
+function buildapp(){
+    npm run cordova-build-only-www-android && cd src-cordova && cordova build android && cd ..
+    sudo cp src-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk /srv/http/app-debug.apk
+    cd /srv/http
+    nohup php -S 192.168.1.64:8090 &> /dev/null &!
+    cd - > /dev/null
+}
+function indexer(){
+    docker exec -it yeducationback_sphinx_1 indexer ${@:1}
+}
+function push(){
+    sudo git add .
+    sudo git commit
+    sudo git push
+}
+function stash(){
+    sudo git add .
+    sudo git stash
+}
 function phpd(){
     artisan_path=/var/www/html/back/$1
-    docker exec -it yeducationback_web_1 php $artisan_path ${@:2}
+    docker exec -it hackathon_web_1 php $artisan_path ${@:2}
 }
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

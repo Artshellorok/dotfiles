@@ -7,13 +7,18 @@ syntax enable				"Enable syntax highlighting
 colorscheme desert
 
 set guioptions=				"Disable gui for gVim
+set guifont=Hack\ 11           "Set font
 set backspace=indent,eol,start		"Make backspace behave like in any other editor
-set linespace=12
+set linespace=12 
 set number				"Line numbers
 
 let mapleader = ','			"The default leader is \, but , is much better.
+"--------Tab to 4 spaces--------" 
+filetype plugin indent on 
 
-
+set tabstop=4               " when indenting with '>', use 4 spaces width 
+set shiftwidth=4            " On pressing tab, insert 4 spaces
+set expandtab
 
 "--------Search--------"
 set hlsearch
@@ -35,14 +40,20 @@ imap <C-v> <C-r><C-o>+
 nmap <C-z> "+u
 vmap <C-z> "+u
 
-"Mappings to edit vimrc and plugins.vim
+"Mappings to edit (g)vimrc and plugins.vim
 nmap <Leader>ev :e ~/.vimrc<cr>
+nmap <Leader>eg :e ~/.gvimrc<cr>
 nmap <Leader>ep :e ~/.vim/plugins.vim<cr>
+nmap <Leader>pr :e ~/projects/<cr>
+nmap <Leader>do :e ~/projects/yeducationback<cr>
 
 "Mapping to execute current python file
 nmap <Leader>py :!python %<cr>
 
-"Add simple ighlight removal.
+"Mapping to execute current php file
+nmap <Leader>ph :!php %<cr>
+
+"Add simple highlight removal.
 nmap <Leader><space> :nohlsearch<cr>
 
 "Fix ctrl+s in insert mode
@@ -55,3 +66,11 @@ imap  
 
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 autocmd! bufwritepost ~/.vim/plugins.vim source $MYVIMRC
+
+
+"---------True-colors---------"
+
+if (has('nvim'))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
+
