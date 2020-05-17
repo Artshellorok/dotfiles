@@ -19,6 +19,7 @@ gaps outer 5
 exec --no-startup-id feh --no-fehbg --bg-fill /home/artshellorok/Downloads/wallpaper.png
 exec --no-startup-id setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle,grp_led:scroll'
 exec --no-startup-id compton --backend glx --paint-on-overlay --vsync
+
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -44,7 +45,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+q kill
 # run google chrome
-bindsym $mod+Shift+a exec google-chrome-stable
+bindsym $mod+Shift+a exec chromium
 # start gvim
 bindsym $mod+Shift+s exec gvim ~/projects/
 # start vscode

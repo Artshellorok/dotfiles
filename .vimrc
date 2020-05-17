@@ -1,10 +1,14 @@
-set nocompatible
+set termguicolors                "1-3 lines truecolor 
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set nocompatible                 "Disable vi compatibility
 set clipboard=unnamed
 so ~/.vim/plugins.vim
 
 syntax enable				"Enable syntax highlighting
 
-colorscheme desert
+let g:material_theme_style = 'darker'
+colorscheme material
 
 set guioptions=				"Disable gui for gVim
 set guifont=Hack\ 11           "Set font
@@ -49,6 +53,7 @@ nmap <Leader>do :e ~/projects/yeducationback<cr>
 
 "Mapping to execute current python file
 nmap <Leader>py :!python %<cr>
+nmap <Leader>c :!gcc % && ./a.out<cr>
 
 "Mapping to execute current php file
 nmap <Leader>ph :!php %<cr>
@@ -56,9 +61,7 @@ nmap <Leader>ph :!php %<cr>
 "Add simple highlight removal.
 nmap <Leader><space> :nohlsearch<cr>
 
-"Fix ctrl+s in insert mode
-imap  
-
+inoremap <silent> <C-S>         <C-O>:update<CR>
 
 "---------Auto-Commands---------"
 

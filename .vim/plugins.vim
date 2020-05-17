@@ -9,6 +9,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'kaicataldo/material.vim'
+Plugin 'tomasr/molokai'
 let NERDTreeHijackNetrw = 0
 
 

@@ -1,14 +1,15 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-
 # Path to your oh-my-zsh installation.
+#
 export ZSH="/home/artshellorok/.oh-my-zsh"
-export TERM=xterm-256color
 export PATH=$PATH:/opt/android-sdk/tools
+export PATH=$PATH:./node_modules/.bin
 export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export ANDROID_HOME=/opt/android-sdk
+export LANGUAGE=en_US pacman
 alias urx="xrdb ~/.Xresources"
 alias urxe="vim ~/.Xresources"
 alias so="source ~/.zshrc"
@@ -29,8 +30,7 @@ alias cale="vim ~/.config/polybar/calendar.sh"
 alias dperm="sudo chmod -R 777 ."
 alias mye="docker exec -it yeducationback_mariadb_1 sh -c 'mysql -u root -p'"
 alias host="sudo vim /etc/hosts"
-alias sph="mysql -u root -p --port 8080 --protocol TCP"
-alias php="/usr/bin/php"
+alias sph="mysql -u root -p --port 8080 --protocol TCP" alias php="/usr/bin/php"
 alias vgar="vim ~/.vim/plugins.vim"
 alias prj="gvim ~/projects"
 alias rc="vim ~/.vimrc"
@@ -42,6 +42,14 @@ function inet(){
     sudo ip link set enp3s0 up
     sudo ip addr add 192.168.1.64/24 dev enp3s0
     sudo ip ro add default via 192.168.1.1
+}
+function c(){
+    gcc $1
+    ./a.out
+}
+function c++(){
+    g++ $1 -g
+    ./a.out
 }
 function buildapp(){
     npm run cordova-build-only-www-android && cd src-cordova && cordova build android && cd ..
@@ -70,7 +78,7 @@ function phpd(){
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="afowler"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -133,6 +141,7 @@ ZSH_THEME="agnoster"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/plugins/calc/calc.plugin.zsh
 
 # User configuration
 
